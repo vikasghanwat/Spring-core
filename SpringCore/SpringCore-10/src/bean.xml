@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dao" class="com.dao.Dao"> </bean>
+
+    <bean id="service" class="com.service.Service">
+        <property name="dao" ref="dao"> </property>
+    </bean>
+
+    <bean id="controller" class="com.controller.Controller">
+        <property name="service" ref="service"> </property>
+    </bean>
+
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"> </bean>
+
+    <bean id="beanpostprocessor" class="com.postprocess.BeanPostProcessorImpl"> </bean>
+
+</beans>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+   <!-- 1st IOC check for byType but multiple bean for Account same type
+        then it will check for byName-->
+   <bean id="bean1" class="com.mainapp.Account" primary="true">
+       <constructor-arg name="accountNo" value="1234"> </constructor-arg>
+       <constructor-arg name="accountType" value="saving"> </constructor-arg>
+   </bean>
+
+    <bean id="bean2" class="com.mainapp.Account" autowire-candidate="false">
+        <constructor-arg name="accountNo" value="1234"> </constructor-arg>
+        <constructor-arg name="accountType" value="saving"> </constructor-arg>
+    </bean>
+
+    <!--here it check with name bcz above one is failed bcz byType there are multiple bean for Account-->
+    <bean id="account" class="com.mainapp.Account" autowire-candidate="false">
+        <constructor-arg name="accountNo" value="1234"> </constructor-arg>
+        <constructor-arg name="accountType" value="saving"> </constructor-arg>
+    </bean>
+
+   <!-- here it check byType bcz only single bean is there of type Adhaar-->
+    <bean id="bean3" class="com.mainapp.Adhaar" >
+        <constructor-arg name="adharNo" value="4459"> </constructor-arg>
+        <constructor-arg name="adharName" value="vikas"> </constructor-arg>
+    </bean>
+
+    <bean id="employee" class="com.mainapp.Employee" autowire="constructor">  <!--we can inject dependency using type of bean-->
+    </bean>
+
+    <!--it is injecting by type now bcz we dint provide name here-->
+    <bean id="list" class="java.util.LinkedList">
+        <constructor-arg>
+            <list>
+                <value>AI</value>
+                <value>Cloud</value>
+                <value>SAP</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <!--NOTE:Uncomment below list to see exceptional case-->
+   <!-- here it will 1st check for type but there are 2 list now so it will check for name but name also different
+    in that case it will not inject anything
+    if one filed fail it will not inject for other success bean also bcz it constructor type injection for all field only one constructor
+    is there if any filed fail it will not execute-->
+   <!-- <bean id="list1" class="java.util.LinkedList">
+        <constructor-arg>
+            <list>
+                <value>AI</value>
+                <value>Cloud</value>
+                <value>SAP</value>
+            </list>
+        </constructor-arg>
+    </bean>-->
+
+</beans>

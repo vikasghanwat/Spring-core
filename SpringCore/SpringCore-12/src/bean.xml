@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- this is collection DI
+     below we inject list through setter DI
+     by default it takes ArrayList-->
+    <!--NOTE: remove ref="List" if we want to use default collection class-->
+    <bean id="employee" class="com.mainapp.Employee">
+        <property name="defaultListBooks" ref="List">
+            <!--<list>
+                <value>java</value>
+                <value>paython</value>
+                <value>AI</value>
+            </list>-->
+        </property>
+    </bean>
+
+    <!-- by using below xml tag we can provide our customs list
+     for that we have to provide id="List" to the DI <property> tag as ref l.e  ref="List"-->
+    <!--NOTE: if you to perform collection DI with custom List use below code-->
+    <!--STANDALONE LIST-->
+    <util:list id="List" list-class="java.util.LinkedList">
+        <value>java</value>
+        <value>paython</value>
+        <value>AI</value>
+    </util:list>
+</beans>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
+
+    <!--This is a comment this bean configuration is for "com.mainapp.beanfactory.Demo" package-->
+<!--    <bean id="demo" class="com.mainapp.beanfactory.Demo"> </bean>-->
+<!--    <bean id="femo" class="com.mainapp.beanfactory.Femo"> </bean>-->
+
+    <!--This is a comment this bean configuration is for "com.mainapp.Employee" package-->
+    <bean id="demo" class="com.mainapp.Employee"> </bean>
+    <bean id="femo" class="com.mainapp.applicationcontext.Femo" lazy-init="true"> </bean>
+
+</beans>

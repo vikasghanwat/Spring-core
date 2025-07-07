@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+   <bean id="account" class="com.mainapp.Account">
+       <constructor-arg name="accountNo" value="1234"> </constructor-arg>
+       <constructor-arg name="accountType" value="saving"> </constructor-arg>
+   </bean>
+
+    <bean id="adhaar" class="com.mainapp.Adhaar">
+        <constructor-arg name="adharNo" value="4459"> </constructor-arg>
+        <constructor-arg name="adharName" value="vikas"> </constructor-arg>
+    </bean>
+
+    <bean id="employee" class="com.mainapp.Employee" autowire="byName"> <!--this is autowiring by name field name should be same which we have to inject
+                                                                         l.e account, adhaar and default book list-->
+       <!-- <property name="adhaar" ref="adhaar"> </property> this is manual DI using setter
+        <property name="account" ref="account"> </property>-->
+        <property name="defaultListBooks" ref="List"> </property>  <!--using setter DI we inject collection l.e list-->
+    </bean>
+
+    <util:list id="List" list-class="java.util.LinkedList">
+        <value>java</value>
+        <value>paython</value>
+        <value>AI</value>
+    </util:list>
+</beans>

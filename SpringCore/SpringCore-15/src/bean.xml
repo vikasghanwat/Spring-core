@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+   <bean id="bean1" class="com.mainapp.Account" primary="true">
+       <constructor-arg name="accountNo" value="1234"> </constructor-arg>
+       <constructor-arg name="accountType" value="saving"> </constructor-arg>
+   </bean>
+
+    <bean id="bean2" class="com.mainapp.Account" autowire-candidate="false">
+        <constructor-arg name="accountNo" value="1234"> </constructor-arg>
+        <constructor-arg name="accountType" value="saving"> </constructor-arg>
+    </bean>
+
+    <bean id="bean3" class="com.mainapp.Adhaar" >
+        <constructor-arg name="adharNo" value="4459"> </constructor-arg>
+        <constructor-arg name="adharName" value="vikas"> </constructor-arg>
+    </bean>
+
+    <bean id="employee" class="com.mainapp.Employee" autowire="byType">  <!--we can inject dependency using type of bean-->
+        <property name="defaultListBooks" ref="List"> </property>  <!--using setter DI we inject collection l.e list-->
+    </bean>
+
+    <util:list id="List" list-class="java.util.LinkedList">
+        <value>java</value>
+        <value>paython</value>
+        <value>AI</value>
+    </util:list>
+</beans>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <bean id="dao" class="com.mainapp.contructorbase_di.Dao"> </bean>
+
+    <bean id="service" class="com.mainapp.contructorbase_di.Service">
+        <constructor-arg name="dao" ref="dao"> </constructor-arg>
+    </bean>
+
+    <!--this is constructor DI we have to use <constructor-arg> tag to achieve constructor base DI
+    name="service" means variable name and ref="service" is bean which we are injecting via constructor -->
+    <bean id="controller" class="com.mainapp.contructorbase_di.Controller">
+        <constructor-arg name="service" ref="service"> </constructor-arg>
+    </bean>
+
+</beans>

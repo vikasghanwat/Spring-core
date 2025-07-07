@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!-- this below bean not treat as class here it a abstract is true means IOC not search for any class parentBean
+    and it understand that common properties are initialised from here-->
+    <bean id="parentBean" abstract="true">
+        <property name="countryCode" value="+91"> </property>
+        <property name="countryName" value="INDIA"> </property>
+        <property name="continental" value="ASIA"> </property>
+    </bean>
+
+    <!-- here we add common properties into a above bean so no need not initialise every time
+    common properties in separate bean, and we can pass bean tag into the bean where we have to use
+    e.g id="parentBean" as parent tag used in below beans
+    this way for every bean no need to set common properties everytime-->
+
+    <bean id="student" class="com.mainapp.Student" parent="parentBean"/>
+
+    <bean id="employee" class="com.mainapp.Employee" parent="parentBean"/>
+
+    <bean id="client" class="com.mainapp.Client" parent="parentBean"/>
+
+   <!-- if we not use bean interface l.e parent bean then we need to initialise proprties like below
+    for every bean separately -->
+
+   <!-- <bean id="student" class="com.mainapp.Student">
+        <property name="countryCode" value="+91"> </property>
+        <property name="countryName" value="INDIA"> </property>
+        <property name="continental" value="ASIA"> </property>
+    </bean>
+
+    <bean id="employee" class="com.mainapp.Employee">
+        <property name="countryCode" value="+91"> </property>
+        <property name="countryName" value="INDIA"> </property>
+        <property name="continental" value="ASIA"> </property>
+    </bean>
+
+    <bean id="client" class="com.mainapp.Client">
+        <property name="countryCode" value="+91"> </property>
+        <property name="countryName" value="INDIA"> </property>
+        <property name="continental" value="ASIA"> </property>
+    </bean>-->
+
+</beans>
